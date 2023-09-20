@@ -1,24 +1,31 @@
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(MyApp()); // Removed "Const" before MyApp()
 }
 
 class MyApp extends StatelessWidget {
+  const MyApp({Key key}) : super(key: key); // Added "Key?" for the key parameter
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: NumberCounter(),
+      title: 'Flutter Demo',
+      home: MyHomePage(title: 'SIB-3D'), // Removed "Const" before MyHomePage()
     );
   }
 }
 
-class NumberCounter extends StatefulWidget {
+class MyHomePage extends StatefulWidget {
+  const MyHomePage({Key key, this.title}) : super(key: key); // Added "Key?" for the key parameter
+
+  final String title;
+
   @override
-  _NumberCounterState createState() => _NumberCounterState();
+  State<MyHomePage> createState() => _MyHomePageState();
 }
 
-class _NumberCounterState extends State<NumberCounter> {
+class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
 
   void _incrementCounter() {
@@ -64,12 +71,13 @@ class _NumberCounterState extends State<NumberCounter> {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Padding(
-              padding: const EdgeInsets.all(10),
-              child: FloatingActionButton(
-                onPressed: _decrementCounter,
-                tooltip: 'decrement',
-                child: const Icon(Icons.remove),
-              )),
+            padding: const EdgeInsets.all(10),
+            child: FloatingActionButton(
+              onPressed: _decrementCounter,
+              tooltip: 'decrement',
+              child: const Icon(Icons.remove),
+            ),
+          ),
           Padding(
             padding: const EdgeInsets.all(0),
             child: FloatingActionButton(
